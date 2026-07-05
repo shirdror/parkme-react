@@ -1,0 +1,236 @@
+/* ==========================================================================
+   ParkMe - globals.css
+   Design System: "Urban Blue"
+   כל טוקני העיצוב (צבעים, טיפוגרפיה, ריווח, רדיוסים, צללים) מוגדרים כאן
+   כ-CSS Variables. אין ערכי hardcode ברכיבים - הכל נגזר מהמשתנים האלה.
+   ========================================================================== */
+
+:root {
+  /* ---- צבעי מותג (Primary) ---- */
+  --color-primary: #1d4ed8;
+  --color-primary-dark: #1e40af;
+  --color-primary-light: #3b82f6;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+
+  /* ---- צבע דגש: ירוק "פנוי" (Accent) ---- */
+  --color-accent: #16a34a;
+  --color-accent-dark: #15803d;
+  --color-accent-50: #f0fdf4;
+  --color-accent-100: #dcfce7;
+
+  /* ---- צבעי סטטוס ---- */
+  --color-danger: #dc2626;
+  --color-danger-50: #fef2f2;
+  --color-warning: #d97706;
+  --color-warning-50: #fffbeb;
+
+  /* ---- ניטרליים ---- */
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* ---- טיפוגרפיה ---- */
+  --font-body: 'Assistant', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: 'Heebo', system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.375rem;   /* 22px */
+  --text-2xl: 1.75rem;   /* 28px */
+  --text-3xl: 2.25rem;   /* 36px */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 800;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+
+  /* ---- ריווח (spacing scale) ---- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ---- רדיוסים ---- */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* ---- צללים רכים ---- */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.10);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.14);
+  --shadow-primary: 0 8px 20px rgba(29, 78, 216, 0.28);
+
+  /* ---- מבנה (layout) ---- */
+  --app-max-width: 480px;      /* רוחב "מסך אפליקציה" במרכז מסכים גדולים */
+  --navbar-height: 60px;
+  --bottomnav-height: 68px;
+  --transition: 0.2s ease;
+  --transition-slow: 0.35s ease;
+
+  --z-navbar: 50;
+  --z-bottomnav: 50;
+  --z-overlay: 100;
+}
+
+/* ==========================================================================
+   Reset בסיסי
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-surface-alt);
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   מחלקות עזר גלובליות (utilities)
+   ========================================================================== */
+
+/* קונטיינר "מסך אפליקציה" - מובייל-פירסט, ממורכז במסכים רחבים */
+.app-shell {
+  width: 100%;
+  max-width: var(--app-max-width);
+  margin-inline: auto;
+  min-height: 100dvh;
+  /* שומר שכל תוכן ה-flow לא ייכנס מתחת ל-BottomNavigation הקבוע */
+  padding-bottom: var(--bottomnav-height);
+  background-color: var(--color-bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+}
+
+/* אזור התוכן שבין ה-Navbar ל-Footer */
+.app-content {
+  flex: 1;
+  padding: var(--space-5);
+  padding-bottom: var(--space-8);
+}
+
+.section-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-4);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* מסך רחב: קצת רקע מסביב ל"מסך האפליקציה" כדי להדגיש את הצורה */
+@media (min-width: 600px) {
+  body {
+    padding-block: var(--space-6);
+  }
+  .app-shell {
+    min-height: calc(100dvh - var(--space-12));
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+}
+
+/* מצב נגישות: הגדלת פונט בסיס. מופעל ע"י כפתור הנגישות */
+:root[data-a11y='large'] {
+  --text-xs: 0.85rem;
+  --text-sm: 0.95rem;
+  --text-base: 1.15rem;
+  --text-lg: 1.3rem;
+  --text-xl: 1.55rem;
+  --text-2xl: 2rem;
+  --text-3xl: 2.5rem;
+}
+
+/* כיבוד העדפת תנועה מופחתת */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

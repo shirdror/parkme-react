@@ -1,0 +1,52 @@
+.logo__link {
+  display: inline-flex;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.logo__badge {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-primary);
+}
+
+.logo__word {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-black);
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  direction: ltr;
+}
+
+.logo__word-accent {
+  color: var(--color-primary);
+}
+
+.logo--lg .logo__badge {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+}
+
+.logo--lg .logo__word {
+  font-size: var(--text-2xl);
+}
+
+.logo--sm .logo__badge {
+  width: 28px;
+  height: 28px;
+}
+
+.logo--sm .logo__word {
+  font-size: var(--text-lg);
+}

@@ -1,0 +1,11 @@
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-50);
+}

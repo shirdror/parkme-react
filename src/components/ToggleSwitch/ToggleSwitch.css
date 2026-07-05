@@ -1,0 +1,73 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  cursor: pointer;
+  padding: var(--space-1) 0;
+}
+
+.toggle__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toggle__label {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.toggle__description {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.toggle__switch {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__track {
+  display: block;
+  width: 48px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+  transition: background var(--transition);
+  position: relative;
+}
+
+.toggle__thumb {
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: inset-inline-start var(--transition), inset-inline-end var(--transition);
+}
+
+.toggle__input:checked + .toggle__track {
+  background: var(--color-accent);
+}
+
+/* במצב פעיל - הכפתור זז לצד השני (מותאם RTL דרך inset-inline) */
+.toggle__input:checked + .toggle__track .toggle__thumb {
+  inset-inline-start: auto;
+  inset-inline-end: 3px;
+}
+
+.toggle__input:focus-visible + .toggle__track {
+  box-shadow: 0 0 0 3px var(--color-primary-100);
+}

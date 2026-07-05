@@ -1,0 +1,101 @@
+.report__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.report__map-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1.5px dashed var(--color-border-strong);
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.report__map-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-50);
+}
+
+.report__map-preview {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  background: var(--color-primary-100);
+  color: var(--color-primary);
+}
+
+.report__map-text {
+  flex: 1;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.report__map-title {
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.report__map-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.report__map-arrow {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.report__toggle-card {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* מסך אישור */
+.report__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-4);
+}
+
+.report__success-icon {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-100);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.report__success-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-black);
+}
+
+.report__success-text {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  max-width: 34ch;
+  margin-bottom: var(--space-4);
+}
+
+.report__success .btn {
+  width: 100%;
+}

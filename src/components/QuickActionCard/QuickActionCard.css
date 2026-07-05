@@ -1,0 +1,58 @@
+.qcard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.qcard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--color-primary-light);
+}
+
+.qcard__icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  color: #fff;
+}
+
+.qcard--primary .qcard__icon {
+  background: var(--color-primary);
+}
+
+.qcard--accent .qcard__icon {
+  background: var(--color-accent);
+}
+
+.qcard--neutral .qcard__icon {
+  background: var(--color-text);
+}
+
+.qcard__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qcard__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.qcard__description {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

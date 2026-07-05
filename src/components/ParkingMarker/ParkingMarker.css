@@ -1,0 +1,35 @@
+.marker {
+  position: absolute;
+  transform: translate(50%, -50%); /* מרכוז אופקי ב-RTL + עיגון לתחתית הסיכה */
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full) var(--radius-full) var(--radius-full) 2px;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.marker:hover {
+  transform: translate(50%, -50%) scale(1.12);
+}
+
+.marker--selected {
+  transform: translate(50%, -50%) scale(1.25);
+  z-index: 5;
+  box-shadow: var(--shadow-lg);
+}
+
+.marker--free {
+  background: var(--color-accent);
+}
+
+.marker--paid {
+  background: var(--color-warning);
+}
+
+.marker--taken {
+  background: var(--color-danger);
+}

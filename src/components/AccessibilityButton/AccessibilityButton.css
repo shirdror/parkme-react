@@ -1,0 +1,19 @@
+.a11y-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  background: var(--color-primary-50);
+  transition: background var(--transition), color var(--transition);
+}
+
+.a11y-btn:hover {
+  background: var(--color-primary-100);
+}
+
+.a11y-btn--active {
+  background: var(--color-primary);
+  color: #fff;
+}

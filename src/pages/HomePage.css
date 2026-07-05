@@ -1,0 +1,112 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.home__hero {
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(150deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.home__hello {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  opacity: 0.9;
+}
+
+.home__headline {
+  color: #fff;
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-black);
+  letter-spacing: -0.02em;
+  margin-top: var(--space-1);
+}
+
+.home__sub {
+  font-size: var(--text-base);
+  opacity: 0.92;
+  margin-block: var(--space-2) var(--space-5);
+}
+
+.home__sub strong {
+  font-weight: var(--weight-bold);
+}
+
+/* על רקע כהה - כפתור לבן */
+.home__hero .btn--primary {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.home__hero .btn--primary:hover {
+  background: var(--color-primary-50);
+}
+
+.home__section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.home__link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+.home__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.home__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.home__banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--color-accent-50);
+  border: 1px solid var(--color-accent-100);
+}
+
+.home__banner-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.home__banner-title {
+  font-weight: var(--weight-bold);
+  color: var(--color-accent-dark);
+}
+
+.home__banner-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* במסך רחב - פעולות מהירות בשלוש עמודות */
+@media (min-width: 600px) {
+  .home__actions {
+    flex-direction: row;
+  }
+  .home__actions > * {
+    flex: 1;
+  }
+}

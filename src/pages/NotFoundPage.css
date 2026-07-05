@@ -1,0 +1,29 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  padding: var(--space-16) var(--space-4);
+}
+
+.notfound__icon {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.notfound__code {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-black);
+  color: var(--color-primary);
+}
+
+.notfound__text {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
