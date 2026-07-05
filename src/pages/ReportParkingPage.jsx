@@ -27,11 +27,11 @@ export default function ReportParkingPage() {
         <ScreenHeader title="דיווח על חניה" back />
         <div className="report__success">
           <span className="report__success-icon">
-            <PinIcon width={34} height={34} />
+            <PinIcon width={30} height={30} />
           </span>
-          <h2 className="report__success-title">הדיווח נשלח, תודה!</h2>
+          <h2 className="report__success-title">הדיווח עלה</h2>
           <p className="report__success-text">
-            שיתפת חניה פנויה עם נהגים אחרים באזור. כל דיווח עוזר לכולם.
+            נהג שמחפש עכשיו ברחוב שלך יראה את המקום. תודה
           </p>
           <PrimaryButton
             fullWidth
@@ -51,17 +51,17 @@ export default function ReportParkingPage() {
 
   return (
     <div className="report">
-      <ScreenHeader title="דיווח על חניה" subtitle="מצאת חניה פנויה? שתף אותה" back />
+      <ScreenHeader title="דיווח על חניה" subtitle="התפנה מקום? ספר לנהג הבא" back />
 
       <form className="report__form" onSubmit={handleSubmit}>
         {/* Map Button - כפתור לפתיחת המפה ובחירת מיקום החניה */}
         <button type="button" className="report__map-btn">
           <span className="report__map-preview" aria-hidden="true">
-            <MapIcon width={26} height={26} />
+            <MapIcon width={24} height={24} />
           </span>
           <span className="report__map-text">
-            <span className="report__map-title">בחר מיקום על המפה</span>
-            <span className="report__map-sub">הקש כדי לסמן היכן החניה</span>
+            <span className="report__map-title">סימון מיקום על המפה</span>
+            <span className="report__map-sub">הקש כדי לבחור את הרחוב</span>
           </span>
           <PinIcon width={20} height={20} className="report__map-arrow" />
         </button>
@@ -86,7 +86,7 @@ export default function ReportParkingPage() {
         <div className="report__toggle-card">
           <ToggleSwitch
             label="חניה בתשלום"
-            description="סמן אם החניה כרוכה בתשלום"
+            description="סמן אם המקום בתשלום"
             checked={isPaid}
             onChange={setIsPaid}
           />

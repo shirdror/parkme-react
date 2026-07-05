@@ -7,12 +7,14 @@ import './Logo.css'
  * מופיע בכל המסכים (Navbar, Login וכו').
  * to=null יגרום לרינדור ללא קישור (למשל בעמוד Login).
  */
-export default function Logo({ size = 'md', to = '/' }) {
+export default function Logo({ size = 'md', to = '/', badge = true }) {
   const content = (
     <span className={`logo logo--${size}`}>
-      <span className="logo__badge">
-        <PinIcon width={size === 'lg' ? 26 : 20} height={size === 'lg' ? 26 : 20} />
-      </span>
+      {badge && (
+        <span className="logo__badge">
+          <PinIcon width={size === 'lg' ? 26 : 20} height={size === 'lg' ? 26 : 20} />
+        </span>
+      )}
       <span className="logo__word">
         Park<span className="logo__word-accent">Me</span>
       </span>

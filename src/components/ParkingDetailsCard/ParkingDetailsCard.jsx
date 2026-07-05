@@ -29,10 +29,7 @@ export default function ParkingDetailsCard({ spot, variant = 'list', selected = 
             {spot.area}
           </p>
         </div>
-        <span
-          className="pcard__status"
-          style={{ color: status.color, background: status.bg }}
-        >
+        <span className="pcard__status" style={{ color: status.color }}>
           {status.label}
         </span>
       </div>

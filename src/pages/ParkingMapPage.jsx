@@ -34,7 +34,7 @@ export default function ParkingMapPage() {
 
   return (
     <div className="pmap">
-      <ScreenHeader title="מפת חניות" subtitle="חניות פנויות בזמן אמת סביבך" />
+      <ScreenHeader title="מפת חניות" subtitle="מה פנוי עכשיו ברחובות סביבך" />
 
       <SearchBar value={query} onChange={(e) => setQuery(e.target.value)} />
 
@@ -68,7 +68,7 @@ export default function ParkingMapPage() {
           {visibleSpots.length} חניות ברשימה
         </h2>
         {visibleSpots.length === 0 && (
-          <p className="pmap__empty">לא נמצאו חניות מתאימות. נסה חיפוש אחר.</p>
+          <p className="pmap__empty">אין חניות שמתאימות לחיפוש</p>
         )}
         {visibleSpots.map((spot) => (
           <ParkingDetailsCard

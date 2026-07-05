@@ -11,35 +11,36 @@
 .logo__badge {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
+  background: var(--color-ink);
   color: #fff;
-  box-shadow: var(--shadow-primary);
 }
 
 .logo__word {
   font-family: var(--font-heading);
   font-weight: var(--weight-black);
-  font-size: var(--text-xl);
-  letter-spacing: -0.02em;
-  color: var(--color-text);
+  font-size: var(--text-md);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
   direction: ltr;
 }
 
+/* אקצנט על ה-Me - קו תחתון דק במקום צבע מלא */
 .logo__word-accent {
-  color: var(--color-primary);
+  color: var(--color-ink);
+  box-shadow: inset 0 -0.14em 0 var(--color-accent);
 }
 
 .logo--lg .logo__badge {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius);
 }
 
 .logo--lg .logo__word {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
 }
 
 .logo--sm .logo__badge {
@@ -48,5 +49,5 @@
 }
 
 .logo--sm .logo__word {
-  font-size: var(--text-lg);
+  font-size: var(--text-md);
 }

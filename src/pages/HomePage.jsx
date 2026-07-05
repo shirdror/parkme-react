@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom'
-import { MapIcon, PlusCircleIcon, UserIcon, PinIcon } from '../components/Icons.jsx'
 import QuickActionCard from '../components/QuickActionCard/QuickActionCard.jsx'
 import ParkingDetailsCard from '../components/ParkingDetailsCard/ParkingDetailsCard.jsx'
-import PrimaryButton from '../components/PrimaryButton/PrimaryButton.jsx'
 import { parkingSpots } from '../data/parkingSpots.js'
 import { currentUser } from '../data/user.js'
 import './HomePage.css'
 
 /*
- * HomePage (/) - מסך הבית: גישה מהירה למסכים הראשיים + חניות קרובות.
+ * HomePage (/) - מסך הבית: הירו צילומי, אינדקס פעולות וחניות קרובות.
  */
 export default function HomePage() {
   const nearby = parkingSpots.slice(0, 3)
@@ -16,49 +14,52 @@ export default function HomePage() {
 
   return (
     <div className="home">
-      <section className="home__hero">
-        <p className="home__hello">שלום {currentUser.name.split(' ')[0]} 👋</p>
-        <h1 className="home__headline">איפה נחנה היום?</h1>
-        <p className="home__sub">
-          יש כרגע <strong>{freeCount} חניות פנויות</strong> באזור שלך
-        </p>
-        <PrimaryButton to="/parking-map" fullWidth icon={<MapIcon width={20} height={20} />}>
-          פתח את המפה
-        </PrimaryButton>
+      <section className="hero">
+        <img className="hero__img" src="/hero.png" alt="רחוב עירוני עם חניות בשעת בין ערביים" />
+        <div className="hero__overlay">
+          <p className="hero__eyebrow">{currentUser.city}</p>
+          <h1 className="hero__title">
+            החניה הפנויה
+            <br />
+            הקרובה אליך
+          </h1>
+          <p className="hero__meta">{freeCount} פנויות ברחוב שלך עכשיו</p>
+          <Link to="/parking-map" className="hero__cta">
+            פתיחת המפה
+            <span aria-hidden="true">←</span>
+          </Link>
+        </div>
       </section>
 
-      <section className="home__section">
-        <h2 className="section-title">פעולות מהירות</h2>
-        <div className="home__actions">
-          <QuickActionCard
-            to="/report-parking"
-            tone="accent"
-            icon={<PlusCircleIcon width={24} height={24} />}
-            title="דיווח על חניה"
-            description="מצאת חניה פנויה? שתף אחרים"
-          />
+      <section className="home__block">
+        <h2 className="eyebrow">מה עושים</h2>
+        <div className="home__index">
           <QuickActionCard
             to="/parking-map"
-            tone="primary"
-            icon={<MapIcon width={24} height={24} />}
+            index="01"
             title="מפת החניות"
-            description="חניות פנויות בזמן אמת"
+            description="מה פנוי עכשיו ברחובות סביבך"
+          />
+          <QuickActionCard
+            to="/report-parking"
+            index="02"
+            title="דיווח על חניה"
+            description="התפנה מקום? עדכן לפני שנסעת"
           />
           <QuickActionCard
             to="/profile"
-            tone="neutral"
-            icon={<UserIcon width={24} height={24} />}
+            index="03"
             title="הפרופיל שלי"
-            description="הדיווחים והעדפות"
+            description="מה שמרת ומה דיווחת"
           />
         </div>
       </section>
 
-      <section className="home__section">
-        <div className="home__section-head">
-          <h2 className="section-title">חניות קרובות אליך</h2>
-          <Link to="/parking-map" className="home__link">
-            הצג הכל
+      <section className="home__block">
+        <div className="home__block-head">
+          <h2 className="section-title">קרוב אליך</h2>
+          <Link to="/parking-map" className="home__more">
+            לכל החניות
           </Link>
         </div>
         <div className="home__list">
@@ -68,16 +69,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="home__banner">
-        <span className="home__banner-icon">
-          <PinIcon width={22} height={22} />
-        </span>
-        <div>
-          <p className="home__banner-title">כל דיווח עוזר לכולם</p>
-          <p className="home__banner-text">
-            כבר {currentUser.reportsCount} דיווחים שלך חסכו זמן לנהגים אחרים
-          </p>
-        </div>
+      <section className="home__note">
+        <span className="home__note-num">{currentUser.reportsCount}</span>
+        <p className="home__note-text">
+          דיווחים שיתפת. נהגים ברחוב שלך מצאו חניה בזכותם
+        </p>
       </section>
     </div>
   )

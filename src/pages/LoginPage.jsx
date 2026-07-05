@@ -26,8 +26,8 @@ export default function LoginPage() {
     <div className="login">
       <div className="login__brand">
         <Logo size="lg" to={null} />
-        <h1 className="login__title">ברוכים הבאים חזרה</h1>
-        <p className="login__subtitle">התחברו כדי למצוא ולשתף חניות בעיר</p>
+        <h1 className="login__title">כניסה לחשבון</h1>
+        <p className="login__subtitle">כדי לשמור חניות ולדווח על מקומות שהתפנו</p>
       </div>
 
       <form className="login__form" onSubmit={handleSubmit}>
@@ -60,11 +60,11 @@ export default function LoginPage() {
       <div className="login__divider"><span>או</span></div>
 
       <SecondaryButton fullWidth icon={<UserIcon width={18} height={18} />} to="/">
-        המשך כאורח
+        כניסה כאורח
       </SecondaryButton>
 
       <p className="login__signup">
-        אין לך חשבון עדיין? <a href="#" onClick={(e) => e.preventDefault()}>הרשמה</a>
+        עוד אין לך חשבון? <a href="#" onClick={(e) => e.preventDefault()}>להרשמה</a>
       </p>
     </div>
   )

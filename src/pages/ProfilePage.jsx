@@ -25,7 +25,7 @@ export default function ProfilePage() {
 
   return (
     <div className="profile">
-      <ScreenHeader title="הפרופיל שלי" subtitle="נהל את הפרטים וההעדפות שלך" />
+      <ScreenHeader title="הפרופיל שלי" subtitle="החשבון שלך וההעדפות" />
 
       <section className="profile__card profile__identity">
         <ProfileAvatar initials={currentUser.initials} size="lg" editable />

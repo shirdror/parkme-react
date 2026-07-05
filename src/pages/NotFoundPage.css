@@ -1,29 +1,31 @@
 .notfound {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--space-3);
-  padding: var(--space-16) var(--space-4);
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-block: var(--space-16);
 }
 
 .notfound__icon {
   display: grid;
   place-items: center;
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-50);
-  color: var(--color-primary);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--color-ink);
+  color: #fff;
 }
 
 .notfound__code {
   font-size: var(--text-3xl);
   font-weight: var(--weight-black);
-  color: var(--color-primary);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+  line-height: 1;
 }
 
 .notfound__text {
   color: var(--color-text-muted);
+  font-size: var(--text-md);
   margin-bottom: var(--space-4);
 }

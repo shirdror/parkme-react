@@ -15,9 +15,7 @@ export default function Footer() {
         <span aria-hidden="true">·</span>
         <Link to="/profile">הפרופיל שלי</Link>
       </nav>
-      <p className="footer__copy">
-        ParkMe · חניה חכמה בעיר · © 2025 כל הזכויות שמורות
-      </p>
+      <p className="footer__copy">ParkMe · תל אביב-יפו · 2025</p>
     </footer>
   )
 }

@@ -1,18 +1,16 @@
 .searchbar {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   background: var(--color-surface);
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
   padding-inline: var(--space-4);
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition: border-color var(--transition);
 }
 
 .searchbar:focus-within {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-100);
+  border-color: var(--color-accent);
 }
 
 .searchbar__icon {
@@ -28,7 +26,7 @@
   background: transparent;
   padding-block: var(--space-3);
   font-size: var(--text-base);
-  color: var(--color-text);
+  color: var(--color-ink);
 }
 
 .searchbar__input::placeholder {

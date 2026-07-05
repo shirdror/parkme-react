@@ -18,7 +18,7 @@ const links = [
 export default function Navbar() {
   return (
     <header className="navbar">
-      <Logo size="sm" />
+      <Logo size="sm" badge={false} />
 
       <nav className="navbar__links" aria-label="ניווט ראשי">
         {links.map((link) => (

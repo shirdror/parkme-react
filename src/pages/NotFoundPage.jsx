@@ -12,7 +12,7 @@ export default function NotFoundPage() {
         <PinIcon width={40} height={40} />
       </span>
       <h1 className="notfound__code">404</h1>
-      <p className="notfound__text">אופס, לא מצאנו את העמוד הזה</p>
+      <p className="notfound__text">הכתובת הזאת לא קיימת</p>
       <PrimaryButton to="/">חזרה לדף הבית</PrimaryButton>
     </div>
   )

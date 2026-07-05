@@ -1,6 +1,5 @@
 .footer {
-  padding: var(--space-5);
-  text-align: center;
+  padding: var(--space-6) var(--space-5) var(--space-5);
   background: var(--color-surface);
   border-top: 1px solid var(--color-border);
 }
@@ -9,20 +8,24 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-4);
+  font-family: var(--font-heading);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--color-primary);
-  margin-bottom: var(--space-3);
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
 }
 
 .footer__links span {
-  color: var(--color-text-subtle);
+  display: none;
+}
+
+.footer__links a:hover {
+  color: var(--color-accent);
 }
 
 .footer__copy {
   font-size: var(--text-xs);
   color: var(--color-text-subtle);
-  line-height: var(--leading-relaxed);
+  line-height: var(--leading-normal);
 }

@@ -67,7 +67,7 @@ export const parkingSpots = [
 ]
 
 export const statusLabels = {
-  free: { label: 'פנויה', color: 'var(--color-accent)', bg: 'var(--color-accent-100)' },
-  paid: { label: 'בתשלום', color: 'var(--color-warning)', bg: 'var(--color-warning-50)' },
-  taken: { label: 'נתפסה', color: 'var(--color-danger)', bg: 'var(--color-danger-50)' },
+  free: { label: 'פנויה', color: 'var(--color-free)', bg: 'var(--color-free-bg)' },
+  paid: { label: 'בתשלום', color: 'var(--color-paid)', bg: 'var(--color-paid-bg)' },
+  taken: { label: 'נתפסה', color: 'var(--color-taken)', bg: 'var(--color-taken-bg)' },
 }
