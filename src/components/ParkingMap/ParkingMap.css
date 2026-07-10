@@ -8,52 +8,21 @@
   border: 1px solid var(--color-border-strong);
 }
 
-/* דמוי רשת רחובות - קווים דקים, שטוח */
-.parking-map__grid {
+/* קנבס Leaflet - ממלא את כל מסגרת המפה */
+.parking-map__canvas {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(0deg, rgba(11, 11, 12, 0.10) 1.5px, transparent 1.5px),
-    linear-gradient(90deg, rgba(11, 11, 12, 0.10) 1.5px, transparent 1.5px),
-    linear-gradient(0deg, rgba(11, 11, 12, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(11, 11, 12, 0.05) 1px, transparent 1px);
-  background-size: 92px 92px, 92px 92px, 23px 23px, 23px 23px;
-}
-
-.parking-map__me {
-  position: absolute;
-  top: 50%;
-  left: 48%;
-  width: 16px;
-  height: 16px;
-}
-
-.parking-map__me-dot {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-full);
-  background: var(--color-accent);
-  border: 3px solid #fff;
-  z-index: 2;
-}
-
-.parking-map__me-pulse {
-  position: absolute;
-  inset: -9px;
-  border-radius: var(--radius-full);
-  background: var(--color-accent);
-  opacity: 0.2;
-  animation: me-pulse 2.4s ease-out infinite;
-}
-
-@keyframes me-pulse {
-  0% { transform: scale(0.6); opacity: 0.3; }
-  100% { transform: scale(1.9); opacity: 0; }
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 
 .parking-map__badge {
   position: absolute;
   top: var(--space-3);
   inset-inline-end: var(--space-3);
+  z-index: 1000;
+  pointer-events: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;

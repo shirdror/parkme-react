@@ -1,7 +1,7 @@
 /*
- * נתוני Dummy - חניות פנויות בעיר.
- * אין חיבור ל-Backend. הכל סטטי לצורך הדגמת ה-Frontend (מודול 6).
- * במודול הבא (Data Design) התוכן הזה יגדיר מה ה-Database צריך לאחסן.
+ * נתוני החניות האמיתיים חיים ב-Supabase (טבלת parking_spots, ראה supabase/schema.sql).
+ * המערך parkingSpots כאן שימש כזרע (seed) שהוזרק ל-DB ונשמר כהפניה בלבד.
+ * statusLabels הוא מיפוי תצוגה (צבע + תווית לכל סטטוס) שבשימוש חי ברכיבים.
  */
 export const parkingSpots = [
   {

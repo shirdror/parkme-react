@@ -1,29 +1,57 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import QuickActionCard from '../components/QuickActionCard/QuickActionCard.jsx'
 import ParkingDetailsCard from '../components/ParkingDetailsCard/ParkingDetailsCard.jsx'
-import { parkingSpots } from '../data/parkingSpots.js'
-import { currentUser } from '../data/user.js'
+import { supabase } from '../lib/supabase.js'
+import { fetchSpotsWithStatus } from '../lib/parking.js'
+import { useAuth } from '../context/AuthContext.jsx'
 import './HomePage.css'
 
 /*
  * HomePage (/) - מסך הבית: הירו צילומי, אינדקס פעולות וחניות קרובות.
+ * הנתונים נטענים חיים מ-Supabase (חניות + סטטוס מהדיווח האחרון).
  */
 export default function HomePage() {
-  const nearby = parkingSpots.slice(0, 3)
-  const freeCount = parkingSpots.filter((s) => s.status === 'free').length
+  const { user } = useAuth()
+  const [spots, setSpots] = useState([])
+  const [reportsCount, setReportsCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+
+  const cityName = 'תל אביב-יפו'
+
+  useEffect(() => {
+    async function load() {
+      const [spotsData, { count }] = await Promise.all([
+        fetchSpotsWithStatus(),
+        supabase
+          .from('parking_reports')
+          .select('id', { count: 'exact', head: true })
+          .eq('user_id', user.id),
+      ])
+      setSpots(spotsData)
+      setReportsCount(count || 0)
+      setLoading(false)
+    }
+    load()
+  }, [user.id])
+
+  const nearby = spots.slice(0, 3)
+  const freeCount = spots.filter((s) => s.status === 'free').length
 
   return (
     <div className="home">
       <section className="hero">
         <img className="hero__img" src="/hero.png" alt="רחוב עירוני עם חניות בשעת בין ערביים" />
         <div className="hero__overlay">
-          <p className="hero__eyebrow">{currentUser.city}</p>
+          <p className="hero__eyebrow">{cityName}</p>
           <h1 className="hero__title">
             החניה הפנויה
             <br />
             הקרובה אליך
           </h1>
-          <p className="hero__meta">{freeCount} פנויות ברחוב שלך עכשיו</p>
+          <p className="hero__meta">
+            {loading ? 'טוען חניות...' : `${freeCount} פנויות ברחוב שלך עכשיו`}
+          </p>
           <Link to="/parking-map" className="hero__cta">
             פתיחת המפה
             <span aria-hidden="true">←</span>
@@ -63,14 +91,18 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="home__list">
-          {nearby.map((spot) => (
-            <ParkingDetailsCard key={spot.id} spot={spot} variant="list" />
-          ))}
+          {loading ? (
+            <p className="home__loading">טוען...</p>
+          ) : (
+            nearby.map((spot) => (
+              <ParkingDetailsCard key={spot.id} spot={spot} variant="list" />
+            ))
+          )}
         </div>
       </section>
 
       <section className="home__note">
-        <span className="home__note-num">{currentUser.reportsCount}</span>
+        <span className="home__note-num">{reportsCount}</span>
         <p className="home__note-text">
           דיווחים שיתפת. נהגים ברחוב שלך מצאו חניה בזכותם
         </p>

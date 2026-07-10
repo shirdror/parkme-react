@@ -1,13 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ScreenHeader from '../components/ScreenHeader/ScreenHeader.jsx'
 import SearchBar from '../components/SearchBar/SearchBar.jsx'
 import ParkingMap from '../components/ParkingMap/ParkingMap.jsx'
 import ParkingDetailsCard from '../components/ParkingDetailsCard/ParkingDetailsCard.jsx'
-import { parkingSpots } from '../data/parkingSpots.js'
+import { supabase } from '../lib/supabase.js'
+import { fetchSpotsWithStatus } from '../lib/parking.js'
+import { useAuth } from '../context/AuthContext.jsx'
 import './ParkingMapPage.css'
 
 /*
- * ParkingMapPage (/parking-map) - הצגת מפת החניות, חיפוש וצפייה בפרטי חניה.
+ * ParkingMapPage (/parking-map) - מפת החניות החיה, חיפוש, סינון ושמירת מועדפים.
+ * הנתונים נטענים מ-Supabase, ומתעדכנים ב-Realtime בכל דיווח חדש.
  */
 const filters = [
   { key: 'all', label: 'הכל' },
@@ -16,21 +19,65 @@ const filters = [
 ]
 
 export default function ParkingMapPage() {
+  const { user } = useAuth()
+  const [spots, setSpots] = useState([])
+  const [favorites, setFavorites] = useState(new Set())
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('all')
-  const [selectedId, setSelectedId] = useState(parkingSpots[0].id)
+  const [selectedId, setSelectedId] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const visibleSpots = parkingSpots.filter((spot) => {
+  async function loadSpots() {
+    const data = await fetchSpotsWithStatus()
+    setSpots(data)
+    setSelectedId((prev) => prev || data[0]?.id || null)
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    loadSpots()
+
+    supabase
+      .from('favorites')
+      .select('spot_id')
+      .eq('user_id', user.id)
+      .then(({ data }) => setFavorites(new Set((data || []).map((f) => f.spot_id))))
+
+    // Realtime - בכל דיווח חדש טוענים מחדש כדי לחשב את הסטטוס העדכני
+    const channel = supabase
+      .channel('parking_reports_changes')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'parking_reports' },
+        () => loadSpots()
+      )
+      .subscribe()
+
+    return () => supabase.removeChannel(channel)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.id])
+
+  async function toggleFavorite(spotId) {
+    const isSaved = favorites.has(spotId)
+    const next = new Set(favorites)
+    if (isSaved) {
+      next.delete(spotId)
+      setFavorites(next)
+      await supabase.from('favorites').delete().eq('user_id', user.id).eq('spot_id', spotId)
+    } else {
+      next.add(spotId)
+      setFavorites(next)
+      await supabase.from('favorites').insert({ user_id: user.id, spot_id: spotId })
+    }
+  }
+
+  const visibleSpots = spots.filter((spot) => {
     const matchesFilter = filter === 'all' || spot.status === filter
-    const matchesQuery =
-      !query ||
-      spot.title.includes(query) ||
-      spot.area.includes(query)
+    const matchesQuery = !query || spot.title.includes(query) || spot.area.includes(query)
     return matchesFilter && matchesQuery
   })
 
-  const selectedSpot =
-    visibleSpots.find((s) => s.id === selectedId) || visibleSpots[0] || null
+  const selectedSpot = visibleSpots.find((s) => s.id === selectedId) || visibleSpots[0] || null
 
   return (
     <div className="pmap">
@@ -51,35 +98,44 @@ export default function ParkingMapPage() {
         ))}
       </div>
 
-      <ParkingMap
-        spots={visibleSpots}
-        selectedId={selectedSpot?.id}
-        onSelect={setSelectedId}
-      />
-
-      {selectedSpot && (
-        <div className="pmap__selected">
-          <ParkingDetailsCard spot={selectedSpot} variant="detail" />
-        </div>
-      )}
-
-      <div className="pmap__list">
-        <h2 className="section-title">
-          {visibleSpots.length} חניות ברשימה
-        </h2>
-        {visibleSpots.length === 0 && (
-          <p className="pmap__empty">אין חניות שמתאימות לחיפוש</p>
-        )}
-        {visibleSpots.map((spot) => (
-          <ParkingDetailsCard
-            key={spot.id}
-            spot={spot}
-            variant="list"
-            selected={spot.id === selectedSpot?.id}
-            onClick={() => setSelectedId(spot.id)}
+      {loading ? (
+        <p className="pmap__empty">טוען מפה...</p>
+      ) : (
+        <>
+          <ParkingMap
+            spots={visibleSpots}
+            selectedId={selectedSpot?.id}
+            onSelect={setSelectedId}
           />
-        ))}
-      </div>
+
+          {selectedSpot && (
+            <div className="pmap__selected">
+              <ParkingDetailsCard
+                spot={selectedSpot}
+                variant="detail"
+                saved={favorites.has(selectedSpot.id)}
+                onSave={() => toggleFavorite(selectedSpot.id)}
+              />
+            </div>
+          )}
+
+          <div className="pmap__list">
+            <h2 className="section-title">{visibleSpots.length} חניות ברשימה</h2>
+            {visibleSpots.length === 0 && (
+              <p className="pmap__empty">אין חניות שמתאימות לחיפוש</p>
+            )}
+            {visibleSpots.map((spot) => (
+              <ParkingDetailsCard
+                key={spot.id}
+                spot={spot}
+                variant="list"
+                selected={spot.id === selectedSpot?.id}
+                onClick={() => setSelectedId(spot.id)}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   )
 }

@@ -4,6 +4,13 @@
   gap: var(--space-8);
 }
 
+.profile__saved-msg {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-free, #15803d);
+}
+
 /* זהות - שטוח, בלי כרטיס */
 .profile__identity {
   display: flex;

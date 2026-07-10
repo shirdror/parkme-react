@@ -7,11 +7,21 @@ import './ParkingDetailsCard.css'
 /*
  * ParkingDetailsCard (Reusable) - כרטיס המציג מידע על חניה.
  * משמש גם ברשימת החניות (variant="list") וגם ככרטיס הפרטים הנבחר
- * במפה (variant="detail" - עם כפתורי פעולה).
+ * במפה (variant="detail" - עם כפתורי ניווט ושמירה למועדפים).
  */
-export default function ParkingDetailsCard({ spot, variant = 'list', selected = false, onClick }) {
+export default function ParkingDetailsCard({
+  spot,
+  variant = 'list',
+  selected = false,
+  onClick,
+  onSave,
+  saved = false,
+}) {
   const status = statusLabels[spot.status]
   const isDetail = variant === 'detail'
+
+  // ניווט אמיתי לנקודת החניה במפת OpenStreetMap
+  const navigateUrl = `https://www.openstreetmap.org/?mlat=${spot.lat}&mlon=${spot.lng}#map=18/${spot.lat}/${spot.lng}`
 
   const Wrapper = isDetail ? 'div' : 'button'
 
@@ -52,15 +62,22 @@ export default function ParkingDetailsCard({ spot, variant = 'list', selected = 
       </div>
 
       {isDetail && (
-        <>
-          <p className="pcard__reporter">דווח על ידי {spot.reporter}</p>
-          <div className="pcard__actions">
-            <PrimaryButton fullWidth icon={<PinIcon width={18} height={18} />}>
-              נווט לחניה
-            </PrimaryButton>
-            <SecondaryButton fullWidth>שמור</SecondaryButton>
-          </div>
-        </>
+        <div className="pcard__actions">
+          <a
+            className="btn btn--primary btn--full"
+            href={navigateUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="btn__icon"><PinIcon width={18} height={18} /></span>
+            <span>נווט לחניה</span>
+          </a>
+          {onSave && (
+            <SecondaryButton fullWidth onClick={onSave}>
+              {saved ? 'נשמר ✓' : 'שמור'}
+            </SecondaryButton>
+          )}
+        </div>
       )}
     </Wrapper>
   )
