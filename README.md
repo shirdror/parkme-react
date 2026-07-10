@@ -2,7 +2,7 @@
 
 אפליקציית React למציאה, דיווח ושיתוף של חניות פנויות ברחוב בזמן אמת. נהגים שמתפנים מדווחים על המקום, וכל השאר רואים על המפה מה פנוי עכשיו לפני שהם מסתובבים לחפש.
 
-**Live Demo:** _יתעדכן אחרי העלייה ל-Vercel_
+**Live Demo:** [parkme-react.vercel.app](https://parkme-react.vercel.app)
 **GitHub:** [github.com/shirdror/parkme-react](https://github.com/shirdror/parkme-react)
 
 ---
